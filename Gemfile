@@ -1,10 +1,9 @@
 source 'http://rubygems.org'
-
+ruby '1.9.3'
 gem 'cucumber'
 gem 'rspec-expectations'
-#  gem 'poltergeist', :git => 'https://github.com/Ajedi32/poltergeist.git', :branch => 'fix_windows_pgroup_error'
-gem 'poltergeist'
 gem 'selenium-webdriver'
+gem 'poltergeist'
 gem 'launchy'
 gem 'rest-client'
 gem 'syntax'
