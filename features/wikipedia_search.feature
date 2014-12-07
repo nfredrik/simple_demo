@@ -22,7 +22,7 @@ Feature: Wikipedia search
     Given I can access Wikipedia
     When I search for the subject "<subject>"
     Then I get a matching result
-    And I find relevant information on this subject
+    And I find relevant information
   Examples:
     | subject   |
     | Capybara  |

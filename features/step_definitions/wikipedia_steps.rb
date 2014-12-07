@@ -22,14 +22,14 @@ end
 # Reuse: Given I can access Wikipedia
 
 # Regexp matching subject without quotes
-# Use a method defined elsewhere
+# Use search function defined elsewhere
 When(/^I search for ([^"]*)$/) do |subject|
   search_for subject
 end
 
 # Reuse: Then I get a result for <subject>
 
-# Use a method defined elsewhere
+# Use validation function defined elsewhere
 And(/^I find relevant information on (.*)$/) do |subject|
   validate_relevance_for subject
 end
@@ -51,8 +51,10 @@ Then(/^I get a matching result$/) do
   expect(find('h1').text).to eq(@subject)
 end
 
-# Reuse: And I find relevant information on <subject>
-# "this subject" becomes subject parameter
+# Use the saved subject
+And(/^I find relevant information$/) do
+  validate_relevance_for @subject
+end
 
 ####################################################
 
@@ -69,12 +71,8 @@ def validate_relevance_for(subject)
       expect(page.has_text? 'is the largest rodent in the world').to be true
     when 'Selenium'
       expect(find_by_id('mw-content-text').has_text? 'reduce the effects of mercury toxicity').to be true
-    when @subject
-      pending 'This subject has no expected text'
-    when 'this subject'
-      validate_relevance_for @subject
     else
-      validate_relevance_for @subject
+      pending 'This subject has no expected text'
   end
 end
 
